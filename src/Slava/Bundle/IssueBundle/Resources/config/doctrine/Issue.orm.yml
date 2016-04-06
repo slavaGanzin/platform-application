@@ -1,0 +1,70 @@
+Slava\Bundle\IssueBundle\Entity\Issue:
+    type: entity
+    table: slava_issue
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+      summary:
+        type: string
+      code:
+        type: string
+      description:
+        type: text
+      type:
+        type: string
+      # (predefined types: Bug, Subtask, Task and Story)
+      # priority (dictionary entity)
+      # resolution (dictionary entity)
+      # status (workflow step, OroWorkflowBundle: Open, In progress, Closed, Resolved, Reopened)
+      # tags (dictionary entity from OroTagBundle)
+      
+      created:
+        type: datetime
+      updated:
+        type: datetime
+      
+      
+    oneToOne:
+      reporter:
+        targetEntity: Oro\Bundle\UserBundle\Entity\User
+        joinColumn:
+          referencedColumnName: id
+      assignee:
+        targetEntity: Oro\Bundle\UserBundle\Entity\User
+        joinColumn:
+          referencedColumnName: id
+          
+    manyToMany:
+      children:
+        targetEntity: Issue
+        inversedBy: parrent
+        joinTable:
+          name: slava_issue_children_to_issue_parent
+          joinColumns:
+            children_id:
+              referencedColumnName: id
+          inverseJoinColumns:
+            parent_id:
+              referencedColumnName: id
+      parent:
+        targetEntity: Issue
+        mappedBy: children
+        
+      collaborators:
+        targetEntity: Oro\Bundle\UserBundle\Entity\User
+        joinTable:
+          name: slava_issue_collaborators_to_oro_user
+          joinColumns:
+            collaborator_id:
+              referencedColumnName: id
+          inverseJoinColumns:
+            issue_id:
+              referencedColumnName: id
+              unique: true
+                
+    lifecycleCallbacks:
+       prePersist: [ updateTimestamps ]
+       postPersist: [ updateTimestamps ]
+    
