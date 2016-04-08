@@ -27,6 +27,13 @@ Slava\Bundle\IssueBundle\Entity\Issue:
       
       
     oneToOne:
+      workflow_item:
+        targetEntity: Oro\Bundle\WorkflowBundle\Entity\WorkflowItem
+        joinColumn:
+          name: "workflow_item_id"
+          referencedColumnName: "id"
+          onDelete: "SET NULL"
+      
       reporter:
         targetEntity: Oro\Bundle\UserBundle\Entity\User
         joinColumn:
@@ -35,6 +42,14 @@ Slava\Bundle\IssueBundle\Entity\Issue:
         targetEntity: Oro\Bundle\UserBundle\Entity\User
         joinColumn:
           referencedColumnName: id
+    
+    manyToOne:
+      workflow_step:
+        targetEntity: Oro\Bundle\WorkflowBundle\Entity\WorkflowStep
+        joinColumn:
+          name: "workflow_step_id"
+          referencedColumnName: "id"
+          onDelete: "SET NULL"
           
     manyToMany:
       children:

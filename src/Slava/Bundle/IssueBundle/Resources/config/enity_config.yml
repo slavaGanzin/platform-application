@@ -1,0 +1,7 @@
+oro_entity_config:
+    issue:                                      # a configuration scope name
+        entity:                                # a section describes an entity
+            issue:                             # starts a description of entity attributes
+                type:                     # adds an attribute named 'demo_attr'
+                    options:
+                        default_value: 'Bug'

@@ -1,0 +1,82 @@
+#Ingloriously stollen from: https://github.com/sergeypererva/platform-application/blob/41947dbf2f0a0035bfe4e3a5c02872c6f18257a4/src/Oro/Bundle/IssueBundle/Resources/translations/messages.en.yml
+oro:
+  issue:
+    flow:
+        label: Issue Workflow
+        open: Open
+        in_progress: In Progress
+        closed: Closed
+        resolved: Resolved
+        open_issue: Open Issue
+        start_progress: Start Progress
+        stop_progress: Stop Progress
+        resolve: Resolve
+        close: Close
+        reopen: Reopen
+    
+slava:
+    issue:
+        entity_label: Issue
+        entity_plural_label: Issues
+        to_issues_list_label: Back To Issues List
+        new_issue: New Issue
+        assignee:
+            label: Assignee
+        reporter:
+            label: Reporter
+        children:
+            label: Child Issues
+        code:
+            label: Code
+        collaborators:
+            label: Collaborators
+        description:
+            label: Description
+        id:
+            label: ID
+        parent:
+            label: Parent Issue
+        priority:
+            label: Priority
+            trivial:
+                label: Trivial
+            minor:
+                label: Minor
+            major:
+                label: Major
+        resolution:
+            label: Resolution
+            fixed:
+                label: Fixed
+            wont_fix:
+                label: Won't Fix
+            duplicate:
+                label: Duplicate
+            incomplete:
+                label: Incomplete
+            cant_reproduce:
+                label: Can't Reproduce
+            done:
+                label: Done
+            wont_do:
+                label: Won't Do
+        status:
+            label: Status
+            in_progress:
+                label: In Progress
+            closed:
+                label: Closed
+            open:
+                label: Open
+        summary:
+            label: Summary
+        type:
+            label: Type
+            bug:
+                label: Bug
+            subtask:
+                label: Subtask
+            task:
+                label: Task
+            story:
+                label: Story

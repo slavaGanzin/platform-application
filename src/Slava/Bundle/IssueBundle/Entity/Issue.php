@@ -1,21 +1,28 @@
 <?php
 
 namespace Slava\Bundle\IssueBundle\Entity;
-
-/**
- * Issue
- * @Config
- */
+use Oro\Bundle\EntityConfigBundle\Metadata\Annotation\Config;
+use Slava\Bundle\IssueBundle\Model\ExtendIssue;
+ /**
+  * ...
+  *
+  * @Config(
+  *  defaultValues={
+  *      "workflow"={
+  *          "active_workflow"="issue_status_workflow"
+  *      },
+  *         "security"={
+  *             "type"="ACL",
+  *             "permissions"="All"
+  *          }
+  *  }
+  * )
+  */
  
-class Issue
+class Issue// extends ExtendIssue
 {
-  public function updateTimestamps()
-  {
-    $this->setUpdated(new \DateTime('now'));
-    if ($this->getCreated() == null) {
-      $this->setCreated(new \DateTime('now'));
-    }
-  }
+  use WorkflowTrait;
+  use UpdateTrait;
   
   /**
   * Set parent
@@ -24,7 +31,7 @@ class Issue
   *
   * @return Issue
   */
-  public function addParent(\Slava\Bundle\IssueBundle\Entity\Issue $parent)
+  public function setParent(\Slava\Bundle\IssueBundle\Entity\Issue $parent)
   {
     $this->parent[0] = $parent;
     
@@ -442,4 +449,39 @@ class Issue
     {
         return $this->collaborators;
     }
+
+    /**
+     * Add parent
+     *
+     * @param \Slava\Bundle\IssueBundle\Entity\Issue $parent
+     *
+     * @return Issue
+     */
+    public function addParent(\Slava\Bundle\IssueBundle\Entity\Issue $parent)
+    {
+        $this->parent[] = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Remove parent
+     *
+     * @param \Slava\Bundle\IssueBundle\Entity\Issue $parent
+     */
+    public function removeParent(\Slava\Bundle\IssueBundle\Entity\Issue $parent)
+    {
+        $this->parent->removeElement($parent);
+    }
+    /**
+     * @var \Oro\Bundle\WorkflowBundle\Entity\WorkflowItem
+     */
+    private $workflow_item;
+
+    /**
+     * @var \Oro\Bundle\WorkflowBundle\Entity\WorkflowStep
+     */
+    private $workflow_step;
+
+
 }

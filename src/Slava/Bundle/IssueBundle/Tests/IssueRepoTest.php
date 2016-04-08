@@ -23,7 +23,7 @@ class IssueRepoTest extends KernelTestCase
             ->getManager();
             
         $loader = new \Doctrine\Common\DataFixtures\Loader;
-        $loader->loadFromFile('./src/Slava/Bundle/IssueBundle/Migrations/Data/ORM/LoadIssues.php');
+        $loader->loadFromFile('./src/Slava/Bundle/IssueBundle/Tests/Fixtures/Issues.php');
         $purger = new \Doctrine\Common\DataFixtures\Purger\ORMPurger($this->em);
         $executor = new \Doctrine\Common\DataFixtures\Executor\ORMExecutor($this->em, $purger);
         $executor->execute($loader->getFixtures());
